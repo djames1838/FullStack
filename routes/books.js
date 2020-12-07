@@ -34,6 +34,8 @@ router.get('/new', async (req, res) => {
 
 // Create Book Route
 router.post('/', async (req, res) => {
+  console.log('Correct Route')
+  console.log(req.body)
     const book = new Book({
       title: req.body.title,
       author: req.body.author,
@@ -46,7 +48,9 @@ router.post('/', async (req, res) => {
       const newBook = await book.save()
       // res.redirect(`books/${newBook.id}`)
       res.redirect(`books`)
-    } catch {
+    } catch(err) {
+      //console.log(err)
+      console.log('Got caught')
       renderNewPage(res, book, true)
     }
 })
